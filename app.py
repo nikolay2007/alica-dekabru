@@ -1,10 +1,10 @@
 from flask import Flask, request
 
 
-app = Flask(__name__)
+app = Flask(name)
 
 @app.route('/', methods=["POST"])
-def stndard():
+def standard():
     text = request.json.get("request", {}).get("command")
     end = False
     if text == "выход":
@@ -13,28 +13,29 @@ def stndard():
     elif text:
         response_text = f"Вы сказали {text}"
     else:
-        response_text = "ВЫ таки ничего не сказали"
+        response_text = "Вы таки ничего не сказали"
     response = {
         "response":{
-            "text":response_text,
+            "text": response_text,
             "end_session": end,
             "buttons":[
                 {
-                    "title": "Нажми меня",
+                    "title": "Нажми меня!",
                     "hide": True
                 },
                 {
-                    "title": "Выход",
+                    "title": "выход",
                     "hide": True
                 },
                 {
                     "title": "Нажми на ссылку!",
-                    "url": "https://www.youtube.com/",
+                    "url": "https://www.google.by/maps/@54.9495832,26.3622858,13.75z?hl=ru",
                     "hide": True
+
                 }
+
             ]
         },
-
-        "version": "2.0"
+        "version": "1.0"
     }
     return response
